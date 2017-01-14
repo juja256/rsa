@@ -360,7 +360,7 @@ RSA_SIGNED_MSG RsaAbonent::SignKey(L_NUMBER key, RSA_PUBLIC_KEY abonentB) {
 
 RSA_SIGNED_MSG RsaAbonent::SignKey(WORD len, RSA_PUBLIC_KEY abonentB) {
     L_NUMBER key = this->GenerateRandom(len);
-    this->SignKey(key, abonentB);
+    return this->SignKey(key, abonentB);
 }
 
 bool RsaAbonent::VerifySignedMsg(RSA_SIGNED_MSG msg, RSA_PUBLIC_KEY pub, L_NUMBER (*hash_function)(BYTE*, WORD)) {

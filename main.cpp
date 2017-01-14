@@ -26,11 +26,15 @@ int main() {
     L_NUMBER decrypted = B.Decrypt(encrypted);
     std::cout << "B: Decrypts: " << RsaAbonent::LongNumberToString(decrypted) << "\n";
 
-    //L_NUMBER key_raw = RsaAbonent::StringToLongNumber("This is key", 256);
-    //RSA_SIGNED_MSG keyA = A.SignKey(256, pk2);
-    //l_dump(&(keyA.msg), 'h');
-    //l_dump(&(keyA.signature), 'h');
-    //L_NUMBER key = B.ObtainKey(keyA, pk);
-    //l_dump(&key, 'h');
+    RSA_SIGNED_MSG keyA = A.SignKey(255, pk2);
+    std::cout << "A: Initiates key exchange. Encrypted key and signature: \n";    
+    l_dump(&(keyA.msg), 'h');
+    l_dump(&(keyA.signature), 'h');
+    L_NUMBER key = B.ObtainKey(keyA, pk);
+    std::cout << "B: Key verification passed. Obtained key:\n";
+    l_dump(&key, 'h');
     return 0;
 }
+
+
+
